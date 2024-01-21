@@ -8,7 +8,7 @@ const SearchBar = () => {
     }
 
     return (
-        <form onSubmit={handleSearch}  className="lg:w-[576px] flex items-center justify-center">
+        <form onSubmit={handleSearch} className="hidden lg:w-[576px] md:flex items-center justify-center">
             <input className="p-2 border flex-grow outline-none rounded-l-md" type="search" placeholder="search" />
             <button type="submit" className="bg-gray-100 border-y border-r py-3 px-4 rounded-r-md"> <FaSearch /></button>
         </form>
