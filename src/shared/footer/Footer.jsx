@@ -2,10 +2,10 @@ import { FaGooglePlay, FaAppStore, FaTwitter, FaFacebook, FaInstagram } from 're
 
 const Footer = () => {
     return (
-        <footer className="container mx-auto bg-transparent text-gray-800 py-8 px-5 bg-gray-50 border-gray-500">
+        <footer className="container mx-auto bg-transparent text-gray-800 py-8 px-5 bg-gray-200 border-gray-500">
             <div className='flex justify-between items-center py-5'>
                 <h2 className="text-4xl font-medium">
-                    Logo
+                    VividVista
                 </h2>
 
                 {/* App Store/Google Play links */}
@@ -66,7 +66,7 @@ const Footer = () => {
                 </ul>
 
                 {/* Column 4: Social Media Links */}
-                <div className="flex items-center">
+                <div className="flex items-center md:pl-4">
                     <a href="#" className="text-xl mr-4">
                         <FaTwitter />
                     </a>
