@@ -9,7 +9,7 @@ const NavbarComponent = () => {
         .then(() => {})
     }
     return (
-        <div className="navbar sticky top-0 bg-base-200 container mx-auto">
+        <div className="navbar sticky top-0 bg-white container mx-auto drop-shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
