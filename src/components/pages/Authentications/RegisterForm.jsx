@@ -1,9 +1,45 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate, } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
 
 const RegisterForm = ({ onTabChange, onGoogleLogin, onForgotPassword }) => {
+  const { createUser, verifyEmail } = useAuth()
+  const location = useLocation();
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || '/';
+
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log('Register clicked');
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const userInfo = { name, email, password }
+    console.log(userInfo)
+
+    createUser(email, password)
+      .then(result => {
+        const loggedUser = result.user;
+
+        if (loggedUser) {
+          
+          verifyEmail(loggedUser)
+            .then(() => {
+              alert('We Sent a email to verify your email please check!')
+              
+              if (loggedUser.emailVerified) {
+                axios.put(`${import.meta.env.VITE_api_url}/user`, userInfo)
+                  .then(res => {
+                    console.log(res.data)
+                    if (res.data.acknowledged) {
+                      navigate(from, { replace: true });
+                      alert(`Welcome ${loggedUser.displayName}`)
+                    }
+                  })
+              }
+            })
+        }
+      })
   };
 
   return (

@@ -1,13 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const LoginForm = ({ onTabChange, onForgotPassword, onGoogleLogin }) => {
-    const handleLogin = () => {
-        console.log('Login clicked');
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+    const handleLogin = event => {
+        event.preventDefault()
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        // console.log(email, password)
+
+        login(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            alert('Welcome')
+            form.reset()
+            navigate(from, { replace: true });
+
+        })
+        .catch(err => {
+            const errorMessage = err.message;
+            alert(errorMessage)
+        })
+
     };
 
     return (
         <div>
             <h2 className="text-2xl font-semibold mb-4 text-center text-neutral-900 opacity-75">Please Login</h2>
+
             <form onSubmit={handleLogin}>
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">
@@ -56,6 +82,7 @@ const LoginForm = ({ onTabChange, onForgotPassword, onGoogleLogin }) => {
                     Register with Google
                 </button>
             </form>
+
             <p className="text-sm text-center text-gray-600">
                 Don&apos;t have an account?{' '}
                 <button

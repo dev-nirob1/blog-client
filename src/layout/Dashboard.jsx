@@ -5,15 +5,15 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
     const [isSidebarVisible, setSidebarVisible] = useState(false);
-    const admin = false;
-    const author = true;
+    const admin = true;
+    const author = false;
     const toggleSidebar = () => {
         setSidebarVisible(!isSidebarVisible);
     };
 
     return (
         <div className="flex h-screen bg-gray-100">
-            <aside className={`bg-rose-500 p-2 text-white w-64 min-h-screen ${isSidebarVisible ? 'block absolute' : 'hidden'} md:block`}>
+            <aside className={`bg-rose-500 z-50 p-2 text-white w-64 min-h-screen ${isSidebarVisible ? 'block absolute' : 'hidden'} md:block`}>
                 <div className="p-4">
                     <h1 className="text-2xl font-semibold">Dashboard</h1>
                 </div>
