@@ -6,8 +6,9 @@ import UsersData from "./UsersData";
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure()
     const { loading } = useAuth()
+    
     const { data: users = [], refetch } = useQuery({
-        queryKey: ['courses'],
+        queryKey: ['users'],
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
