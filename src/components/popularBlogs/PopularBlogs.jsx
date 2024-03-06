@@ -18,7 +18,7 @@ const PopularBlogs = () => {
     })
 
     return (
-        <div className="bg-white col-span-3 p-3 h-fit sticky top-28">
+        <div className="bg-white col-span-3 p-3 h-[500px] overflow-y-scroll sticky top-28">
             <h3 className="text-3xl text-center font-medium text-neutral-700">Popular Blogs</h3>
             {
                 popularBlogs.map(popular => <Link to={`/blog/details/${popular._id}`} key={popular._id}>

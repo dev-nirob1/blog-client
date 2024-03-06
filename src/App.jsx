@@ -5,19 +5,23 @@ import PopularBlogs from "./components/popularBlogs/PopularBlogs";
 import { AiFillLike } from "react-icons/ai";
 import { MdModeComment } from "react-icons/md";
 import { FaRegShareSquare } from "react-icons/fa";
+import useAuth from "./hooks/useAuth";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
-
+  const {loading} = useAuth()
   useEffect(() => {
     fetch('http://localhost:5000/blogs')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        console.log(data._id);
         setBlogs(data);
       });
   }, []);
 
+  if(loading) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="container mx-auto my-10 relative min-h-screen">
       <div className="grid grid-cols-12 gap-5">
@@ -43,11 +47,11 @@ function App() {
         <div className="col-span-9">
           {
             blogs.map(blog => (
-              <div className="grid grid-cols-6 items-center gap-5 border-b py-8" key={blog._id}>
+              <div className="grid grid-cols-6 items-center gap-5 border-b py-8 cursor-pointer" key={blog._id}>
 
                 <div className="col-span-2 h-full relative">
-                  <img className="h-[250px] w-full" src={blog?.titleImage} alt="" />
-                  <p className="absolute top-3 right-3 text-white bg-orange-400 rounded-lg">{blog.category}</p>
+                  <img className="h-[250px] w-full" src={blog?.titleImage} alt="blog image" />
+                  <p className="absolute top-3 right-3 text-white bg-pink-500 rounded-lg">{blog.category}</p>
                 </div>
 
                 <div className="col-span-4">
@@ -55,11 +59,11 @@ function App() {
 
                   <div className="font-medium text-neutral-600" dangerouslySetInnerHTML={{ __html: blog.content.length > 200 ? blog.content.substr(0, 200) + '...' : blog.content }}></div>
 
-                  {blog?.content?.length > 200 && <Link to={`/blog/details/:id`} className="text-blue-400 hover:text-blue-500 inline">See More</Link>}
+                  {blog?.content?.length > 200 && <Link to={`/blog/details/${blog._id}`} className="text-blue-400 hover:text-blue-500 inline">See More</Link>}
 
                   <div className="flex justify-between items-center ">
                     <div className="flex items-center mt-5 gap-3">
-                      <img className="gap-3 w-12 h-12 rounded-full" src={blog?.author?.profileImage} alt="profile image" />
+                      <Link to={`/blog/details/${blog._id}`}><img className="gap-3 w-12 h-12 rounded-full" src={blog?.author?.profileImage} alt="profile image" /></Link>
                       <div>
                         <div>
                           <p className="text-sm text-neutral-600 font-medium">{blog.author.name}</p>

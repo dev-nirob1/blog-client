@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 const NavbarComponent = () => {
     const { user, logOut } = useAuth()
-    console.log(user)
+    // console.log(user)
     const handleLogout = ()=>{
         logOut()
         .then(() => {})

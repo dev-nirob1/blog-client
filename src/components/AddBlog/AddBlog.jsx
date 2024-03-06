@@ -72,7 +72,7 @@ const AddBlog = () => {
                 </select>
 
                 <label htmlFor="image"></label>
-                <input className='mt-4' type="file" id='image' name='image' />
+                <input className='mt-4 p-2 border rounded w-full mx-auto' type="file" id='image' name='image' />
 
                 <div className='mt-4'>
                     <ReactQuill theme="snow" value={value} onChange={setValue} />
