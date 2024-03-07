@@ -9,7 +9,7 @@ const AddBlog = () => {
     const [axiosSecure] = useAxiosSecure();
     const [value, setValue] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
-
+    console.log(selectedImage)
     const handleAddBlogs = async (event) => {
         event.preventDefault();
 
@@ -32,6 +32,7 @@ const AddBlog = () => {
         const blogs = {
             author: {
                 name: user?.displayName,
+                email: user?.email,
                 profileImage: user?.photoURL,
                 date: new Date(),
             },

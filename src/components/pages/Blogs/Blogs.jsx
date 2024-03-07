@@ -14,9 +14,9 @@ const Blogs = () => {
     const { loading } = useAuth()
 
     const categories = ['All', 'Programming & Tech', 'Travel & Adventure', 'Book Review', 'Personal Development', 'News & Updates', 'Health & Fitness']
-    
+
     const handleCategory = category => {
-        setCategory(category === 'All'? null : category)
+        setCategory(category === 'All' ? null : category)
         console.log(category)
     }
     const { data: blogs = [] } = useQuery({
@@ -32,7 +32,7 @@ const Blogs = () => {
     const filteredBlogs = category ? blogs.filter(blog => blog.category === category) : blogs;
     console.log(filteredBlogs)
     return (
-        <div className="min-h-screen container mx-auto my-10 relative">
+        <div className="min-h-screen max-w-[1080px] mx-auto my-10 relative">
             <div className="grid grid-cols-12 gap-5">
                 <div className="w-fit col-span-3 h-screen sticky top-28">
                     <div className="text-xl flex items-center">
@@ -43,7 +43,7 @@ const Blogs = () => {
                     <ul className="space-y-1">
 
                         {categories.map(item =>
-                            <li onClick={()=>handleCategory(item)} key={item} className="p-2 hover:bg-white cursor-pointer">{item}</li>
+                            <li onClick={() => handleCategory(item)} key={item} className="p-2 hover:bg-white cursor-pointer">{item}</li>
                         )}
 
                         {/* <li className="p-2 hover:bg-white cursor-pointer">Programming & Tech</li>
@@ -96,6 +96,14 @@ const Blogs = () => {
                             </div>
                         ))
                     }
+                </div>
+            </div>
+            <div className="text-center">
+                <div className="join">
+                    <button className="join-item btn btn-sm">1</button>
+                    <button className="join-item btn btn-sm btn-active">2</button>
+                    <button className="join-item btn btn-sm">3</button>
+                    <button className="join-item btn btn-sm">4</button>
                 </div>
             </div>
         </div>

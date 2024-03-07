@@ -6,8 +6,8 @@ import Header from '../components/DashboardHeader/Header';
 
 const Dashboard = () => {
     const [isSidebarVisible, setSidebarVisible] = useState(false);
-    const admin = true;
-    const author = false;
+    const admin = false;
+    const author = true;
     const toggleSidebar = () => {
         setSidebarVisible(!isSidebarVisible);
     };
