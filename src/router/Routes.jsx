@@ -12,6 +12,7 @@ import ManageUsers from "../components/pages/dashboard/admin/ManageUsers/ManageU
 import AddBlog from "../components/AddBlog/AddBlog";
 import Blogs from "../components/pages/Blogs/Blogs";
 import BlogDetails from "../components/pages/BlogDetails/BlogDetails";
+import AuthorDetails from "../components/pages/Author/AuthorDetails";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/blogs',
-                element: <Blogs />
+                element: <Blogs />,
+                loader: ()=> fetch('http://localhost:5000/blogsCount')
             },
             {
                 path: '/blog/details/:id',
@@ -39,7 +41,11 @@ const router = createBrowserRouter([
             {
                 path: '/reset-password',
                 element: <ResetPassword />
-            }
+            },
+            {
+                path: '/author/:email',
+                element: <AuthorDetails />
+            },
         ]
     },
     {

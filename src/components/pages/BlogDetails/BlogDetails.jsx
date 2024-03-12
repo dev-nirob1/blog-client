@@ -33,11 +33,11 @@ const BlogDetails = () => {
             <div className="container mx-auto my-12">
                 <div className="flex gap-5">
                     <div className="max-w-[960px] border p-5 space-y-5">
-                        <SingleBlog blogDetails={blogDetails}/>
+                        <SingleBlog blogDetails={blogDetails} />
 
                         {/* more from same author */}
                         <div className="border rounded-md p-4 ">
-                            <h2 className="text-2xl font-medium my-3">More from {blogDetails?.author?.name}</h2>
+                            <h2 className="text-2xl font-medium my-3">More Blogs from {blogDetails?.author?.name}</h2>
 
                             <div className="grid grid-cols-3 gap-4">
                                 {
