@@ -49,40 +49,40 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: 'dashboard',
+        path: '/dashboard',
         element: <Dashboard />,
         children: [
             {
-                path: 'dashboard/admin-home',
+                path: 'admin-home',
                 element: <AdminHome />
             },
             {
-                path: 'dashboard/add-blog',
+                path: 'add-blog',
                 element: <AddBlog />
             },
             {
-                path: 'dashboard/my-blogs',
+                path: 'my-blogs',
                 element: <MyBlogs />
             },
             {
-                path: 'dashboard/manage-blogs',
+                path: 'manage-blogs',
                 element: <ManageBlogs />
             },
             {
-                path: 'dashboard/manage-users',
+                path: 'manage-users',
                 element: <ManageUsers />
             },
             //authors related routes
             {
-                path: 'dashboard/author-home',
+                path: 'author-home',
                 element: <AuthorHome />
             },
             {
-                path: 'dashboard/add-blog',
+                path: 'add-blog',
                 element: <AddBlog />
             },
             {
-                path: 'dashboard/my-blogs',
+                path: 'author-blogs',
                 element: <MyBlogs />
             },
         ]

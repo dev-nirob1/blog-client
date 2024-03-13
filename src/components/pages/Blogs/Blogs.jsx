@@ -7,7 +7,7 @@ import { useLoaderData } from "react-router-dom";
 import Loading from "../../loading/Loading";
 
 const Blogs = () => {
-    const [category, setCategory] = useState(null)
+    // const [category, setCategory] = useState(null)
     const [axiosSecure] = useAxiosSecure()
     const { loading } = useAuth()
     const { totalBlogs } = useLoaderData()
@@ -23,11 +23,11 @@ const Blogs = () => {
     }
 
 
-    const categories = ['All', 'Programming & Tech', 'Travel & Adventure', 'Book Review', 'Personal Development', 'News & Updates', 'Health & Fitness']
+    // const categories = ['All', 'Programming & Tech', 'Travel & Adventure', 'Book Review', 'Personal Development', 'News & Updates', 'Health & Fitness']
 
-    const handleCategory = category => {
-        setCategory(category === 'All' ? null : category)
-    }
+    // const handleCategory = category => {
+    //     setCategory(category === 'All' ? null : category)
+    // }
     const handlePrev = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
@@ -43,20 +43,20 @@ const Blogs = () => {
         queryKey: ['blogs', currentPage],
         enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSecure.get(`/blogs?page=${currentPage}&size=${blogsPerPage}`)
+            const res = await axiosSecure.get(`/blogs/pagination?page=${currentPage}&size=${blogsPerPage}`)
             console.log(blogs)
             return res.data
         }
     })
 
-    const filteredBlogs = category ? blogs.filter(blog => blog.category === category) : blogs;
+    // const filteredBlogs = category ? blogs.filter(blog => blog.category === category) : blogs;
     if(dataLoading){
         return <Loading/>
     }
     return (
         <div className="min-h-screen max-w-[1080px] mx-auto my-10 relative">
-            <div className="grid grid-cols-12 gap-5">
-                <div className="w-fit col-span-3 h-screen sticky top-28">
+            <div className="grid grid-cols-1 gap-5">
+                {/* <div className="w-fit col-span-3 h-screen sticky top-28">
                     <div className="text-xl flex items-center">
                         <span>Wanna Become an Author? </span>
                         <button className="mb-4 text-base text-blue-600 hover:underline">Click here</button>
@@ -68,31 +68,29 @@ const Blogs = () => {
                             <li onClick={() => handleCategory(item)} key={item} className="p-2 hover:bg-white cursor-pointer">{item}</li>
                         )}
                     </ul>
-                </div>
+                </div> */}
 
-                <div className="col-span-9 mt-2">
+                <div className=" mt-2">
                     {
-                        filteredBlogs.map(blog => (
+                        blogs.map(blog => (
                             <BlogItem key={blog._id} blog={blog} />
                         ))
                     }
                 </div>
             </div>
-            <div className="text-center">
+            <div className="text-center mt-10">
                 <div className="join">
-                    <button onClick={handlePrev} className="join-item btn btn-sm">Prev</button>
+                    <button onClick={handlePrev} className="join-item btn btn-sm hover:bg-rose-200 hover:text-red-500">Prev</button>
                     {
                         pages.map(page =>
                             <button key={page}
                                 onClick={() => setCurrentPage(page)}
-                                className={`join-item btn btn-sm ${currentPage === page ? 'btn-active' : ''}`}>
+                                className={`join-item btn btn-sm hover:bg-rose-300 ${currentPage === page ? 'bg-rose-200 text-red-500' : ''}`}>
                                 {page}
                             </button>
                         )
                     }
-                    <button onClick={handleNext} className="join-item btn btn-sm">Next</button>
-
-
+                    <button onClick={handleNext} className="join-item btn btn-sm hover:bg-rose-200 hover:text-red-500">Next</button>
                 </div>
             </div>
         </div>

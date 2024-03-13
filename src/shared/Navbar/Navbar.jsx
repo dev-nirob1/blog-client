@@ -49,7 +49,7 @@ const NavbarComponent = () => {
                                         Profile
                                     </Link>
                                 </li>
-                                <li><Link>Settings</Link></li>
+                                <li><Link to='dashboard/author-home'>Dashboard</Link></li>
                                 <li><button onClick={handleLogout}>Logout</button></li>
                             </ul>
                         </div>
