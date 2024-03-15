@@ -1,9 +1,10 @@
 import { FcApprove } from "react-icons/fc";
 import { FcDisapprove } from "react-icons/fc";
 import { FaTrash } from "react-icons/fa";
+import moment from "moment";
 
-const BlogsData = ({ blog, refetch, index }) => {
-  const { _id, title, titleImage, author, category, approved } = blog;
+const BlogsData = ({ blog, index, handleDelete, handleApprove, handleDeny }) => {
+  const { _id, title, author, approved } = blog;
   return (
     <tr className="bg-white hover:bg-gray-50">
       <th>{index + 1}</th>
@@ -17,8 +18,9 @@ const BlogsData = ({ blog, refetch, index }) => {
         {title}
       </td>
       <td>
-        {author.date}
+        {moment(author.date).format('MMMM D, YYYY')}
       </td>
+
       <td>
         {approved === false
           ?
@@ -26,12 +28,20 @@ const BlogsData = ({ blog, refetch, index }) => {
           :
           <button className="px-5 py-2 rounded bg-green-400 hover:bg-orange-600 font-medium">Approved</button>}
       </td>
+
       <td>
-        <ul className="flex gap-5 items-center">
-          <li><FcApprove size={25} /></li>
-          <li><FcDisapprove size={25} /></li>
-          <li><FaTrash size={25} /></li>
-        </ul>
+        <div className="flex gap-5 items-center">
+          {approved === false &&
+            <>
+              <button onClick={() => handleApprove(_id)} className="text-red-500 p-1 rounded border" title="Approve"><FcApprove size={25} /></button>
+
+              <button onClick={() => handleDeny(_id)} className="text-red-500 p-1 rounded border" title="Deny"><FcDisapprove size={25} /></button>
+
+            </>
+            
+          }
+          <button onClick={() => handleDelete(_id)} className="text-red-500 p-1 rounded border" title="Delete"><FaTrash size={25} /></button>
+        </div>
       </td>
     </tr>
   );
