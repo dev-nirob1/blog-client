@@ -26,7 +26,7 @@ const PopularBlogs = () => {
                         <div className="col-span-2">
                             <img className="h-20 w-full" src={popular.titleImage} alt="image" />
                         </div>
-                        <p className="col-span-4 text-base font-medium text-neutral-500">{popular.title}</p>
+                        <p className="col-span-4 text-sm font-bold text-neutral-700">{popular.title}</p>
                     </div>
                 </Link>)
             }

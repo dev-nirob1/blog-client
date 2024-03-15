@@ -36,10 +36,11 @@ const ManageUsers = () => {
                     <thead>
                         <tr>
                             <th>Serial</th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>Current Role</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     {users.map((user, index) => <UsersData key={index} index={index} user={user} refetch={refetch} handleDeleteUser={handleDeleteUser} handleMakeAuthor={handleMakeAuthor} handleMakeAdmin={handleMakeAdmin} />)

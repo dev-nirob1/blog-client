@@ -1,53 +1,40 @@
+import { useQuery } from "@tanstack/react-query";
+import BlogsData from "./BlogsData";
+import useAuth from "../../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 
 const ManageBlogs = () => {
-    return (
-        <div className="container mx-auto p-4">
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300 rounded-md">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Column 1
-              </th>
-              <th className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Column 2
-              </th>
-              <th className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Column 3
-              </th>
-              <th className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Column 4
-              </th>
-              <th className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Column 5
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Data
-              </td>
-              <td className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Data
-              </td>
-              <td className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Data
-              </td>
-              <td className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Data
-              </td>
-              <td className="py-2 px-4 md:px-6 lg:px-8 xl:px-10 text-sm md:text-base border-b">
-                Data
-              </td>
-              {/* Repeat for other cells */}
-            </tr>
-            {/* Repeat for other rows */}
-          </tbody>
-        </table>
-      </div>
+  const { loading } = useAuth()
+  const [axiosSecure] = useAxiosSecure()
+  const { data: blogsManagement = [], refetch } = useQuery({
+    queryKey: ['/blogs/management'],
+    enabled: !loading,
+    queryFn: async () => {
+      const res = await axiosSecure.get('/blogs/management')
+      return res.data
+    }
+  })
+
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Serial</th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {blogsManagement.map((blog, index) => <BlogsData key={blog._id} blog={blog} index={index} refetch={refetch} />)}
+        </tbody>
+      </table>
     </div>
-    );
+  );
 };
 
 export default ManageBlogs;
