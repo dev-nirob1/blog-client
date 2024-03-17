@@ -10,6 +10,7 @@ const AddBlog = () => {
     const [value, setValue] = useState('');
     const [selectedImage, setSelectedImage] = useState(null);
     console.log(selectedImage)
+
     const handleAddBlogs = async (event) => {
         event.preventDefault();
 
@@ -42,14 +43,15 @@ const AddBlog = () => {
             content: value,
             likes: parseInt(0),
             comments: parseInt(0),
-            approved: false
+            approved: false,
+            denied: false
         };
 
         const res = await axiosSecure.post('/blogs', blogs);
-        if(res.data.acknowledged){
+        if (res.data.acknowledged) {
             alert('blogs added successfully')
         }
-        console.log('Blog Added:', res.data);
+        // console.log('Blog Added:', res.data);
         form.reset()
     };
 

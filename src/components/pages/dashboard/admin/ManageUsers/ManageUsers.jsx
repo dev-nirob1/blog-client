@@ -2,12 +2,13 @@ import useAuth from "../../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import UsersData from "./UsersData";
+import Loading from "../../../../loading/Loading";
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure()
     const { loading } = useAuth()
-    
-    const { data: users = [], refetch } = useQuery({
+
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         enabled: !loading,
         queryFn: async () => {
@@ -17,14 +18,40 @@ const ManageUsers = () => {
         }
     })
 
-    const handleDeleteUser = email => {
+    const handleDeleteUser = async (email) => {
+        const res = await axiosSecure.delete(`/users/delete/${email}`)
         console.log(email)
+        if (res.data.deletedCount) {
+            alert('user deleted')
+            refetch()
+        }
     }
-    const handleMakeAuthor = email => {
-        console.log(email)
+    const handleMakeAuthor = async (email) => {
+        const res = await axiosSecure.patch(`/user/author/${email}`)
+        if (res.data.modifiedCount == 1) {
+            alert('Make Author')
+            refetch()
+        }
     }
-    const handleMakeAdmin = email => {
-        console.log(email)
+
+    const handleMakeAdmin = async (email) => {
+        const res = await axiosSecure.patch(`/user/admin/${email}`)
+        if (res.data.modifiedCount == 1) {
+            alert('Made Admin')
+            refetch()
+        }
+    }
+
+    const handleDemoteToUser = async (email) => {
+        const res = await axiosSecure.patch(`/user/demoteAuthor//${email}`)
+        if (res.data.modifiedCount == 1) {
+            alert('Author Demoted to normal user')
+            refetch()
+        }
+    }
+
+    if (isLoading) {
+        return <Loading />
     }
 
     return (
@@ -43,7 +70,16 @@ const ManageUsers = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {users.map((user, index) => <UsersData key={index} index={index} user={user} refetch={refetch} handleDeleteUser={handleDeleteUser} handleMakeAuthor={handleMakeAuthor} handleMakeAdmin={handleMakeAdmin} />)
+                    {users.map((user, index) => <UsersData
+                        key={index}
+                        index={index}
+                        user={user}
+                        refetch={refetch}
+                        handleDeleteUser={handleDeleteUser}
+                        handleMakeAuthor={handleMakeAuthor}
+                        handleMakeAdmin={handleMakeAdmin}
+                        handleDemoteToUser={handleDemoteToUser}
+                    />)
 
                     }
                 </table>

@@ -10,24 +10,25 @@ const Blogs = () => {
     // const [category, setCategory] = useState(null)
     const [axiosSecure] = useAxiosSecure()
     const { loading } = useAuth()
-    const { totalBlogs } = useLoaderData()
+    const { approvedBlogs } = useLoaderData()
     const [currentPage, setCurrentPage] = useState(0)
     const blogsPerPage = 2;
 
     console.log(currentPage)
-    const totalPage = Math.ceil(totalBlogs / blogsPerPage)
+    const totalPage = Math.ceil(approvedBlogs / blogsPerPage)
 
     const pages = []
     for (let i = 0; i < totalPage; i++) {
         pages.push(i)
     }
-
+    console.log(totalPage, approvedBlogs)
 
     // const categories = ['All', 'Programming & Tech', 'Travel & Adventure', 'Book Review', 'Personal Development', 'News & Updates', 'Health & Fitness']
 
     // const handleCategory = category => {
     //     setCategory(category === 'All' ? null : category)
     // }
+
     const handlePrev = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
@@ -40,7 +41,7 @@ const Blogs = () => {
     }
 
     const { data: blogs = [], isLoading: dataLoading } = useQuery({
-        queryKey: ['blogs', currentPage],
+        queryKey: ['blogs/pagination', currentPage],
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure.get(`/blogs/pagination?page=${currentPage}&size=${blogsPerPage}`)
