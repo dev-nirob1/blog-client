@@ -28,7 +28,7 @@ const ManageUsers = () => {
     }
     const handleMakeAuthor = async (email) => {
         const res = await axiosSecure.patch(`/user/author/${email}`)
-        if (res.data.modifiedCount == 1) {
+        if (res.data.modifiedCount > 0) {
             alert('Make Author')
             refetch()
         }
@@ -36,7 +36,7 @@ const ManageUsers = () => {
 
     const handleMakeAdmin = async (email) => {
         const res = await axiosSecure.patch(`/user/admin/${email}`)
-        if (res.data.modifiedCount == 1) {
+        if (res.data.modifiedCount > 0) {
             alert('Made Admin')
             refetch()
         }
@@ -44,7 +44,7 @@ const ManageUsers = () => {
 
     const handleDemoteToUser = async (email) => {
         const res = await axiosSecure.patch(`/user/demoteAuthor//${email}`)
-        if (res.data.modifiedCount == 1) {
+        if (res.data.modifiedCount > 0) {
             alert('Author Demoted to normal user')
             refetch()
         }
