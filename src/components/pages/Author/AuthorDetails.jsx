@@ -11,6 +11,7 @@ const AuthorDetails = () => {
                     <div>
                     <h2 className="text-3xl font-bold">Hello World</h2>
                     <em>Role: Author</em>
+                    <em>Email: example@gmail.com</em>
                     </div>
 
                         <div className="flex gap-5">

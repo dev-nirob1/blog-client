@@ -5,6 +5,7 @@ import useAxiosSecure from "./hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Loading from './components/loading/Loading';
 import BlogItem from './components/blogItem/BlogItem';
+import NewsLetter from './components/NewsLetter/NewsLetter';
 
 function App() {
   const [axiosSecure] = useAxiosSecure()
@@ -35,12 +36,16 @@ function App() {
           }
         </div>
 
-        {/* Second Sticky Column */}
+        {/* popular Blogs section */}
         <PopularBlogs />
       </div>
       <div className="text-center mt-10">
         <Link to="/blogs" className="text-lg font-medium px-10 py-4 rounded bg-rose-400 text-white">See All</Link>
       </div>
+
+      {/* newletter section  */}
+      <NewsLetter />
+
     </div>
   );
 }
