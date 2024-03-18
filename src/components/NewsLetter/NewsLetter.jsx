@@ -4,7 +4,7 @@ const NewsLetter = () => {
         e.preventDefault()
     }
     return (
-        <div className="h-[50vh] container mx-auto flex items-center justify-center bg-gray-900 mt-10">
+        <div className="h-[50vh] container mx-auto flex items-center justify-center bg-gray-900 my-10">
             <div className="w-3/4 text-gray-300 text-center">
                 <h2 className="text-3xl font-medium">
                     Subscribe to Our Newsletter!

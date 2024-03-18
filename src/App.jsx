@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from './components/loading/Loading';
 import BlogItem from './components/blogItem/BlogItem';
 import NewsLetter from './components/NewsLetter/NewsLetter';
+import Category from './components/featuredCategories/Category';
+import Slider from './components/Slider/Slider';
 
 function App() {
   const [axiosSecure] = useAxiosSecure()
@@ -25,8 +27,14 @@ function App() {
     return <Loading />
   }
   return (
-    <div className="container mx-auto mt-5 mb-12 relative min-h-screen">
+    <div className="container mx-auto mt-5 mb-12 min-h-screen">
+      {/* slider section  */}
+      <Slider />
+      {/* category section  */}
+      <Category />
+
       <div className="grid grid-cols-12 gap-5">
+
 
         <div className="col-span-9">
           {
