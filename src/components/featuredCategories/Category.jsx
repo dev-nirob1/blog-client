@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Category = () => {
     return (
-        <div className="my-10">
+        <div className="my-10 max-w-[1080px] mx-auto">
             <h2 className="text-center text-3xl font-semibold"> Featured Categories</h2>
 
             <div className="grid grid-cols-6 gap-5 py-8">

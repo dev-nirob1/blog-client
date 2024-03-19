@@ -22,12 +22,12 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <App />
+                element: <App />,
+                loader: ()=> fetch('http://localhost:5000/blogsCount')
             },
             {
                 path: '/blogs',
                 element: <Blogs />,
-                loader: ()=> fetch('http://localhost:5000/blogsCount')
             },
             {
                 path: '/blog/details/:id',

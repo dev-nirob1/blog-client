@@ -10,13 +10,13 @@ const NavbarComponent = () => {
         .then(() => {})
     }
     return (
-        <div className="navbar z-[999] sticky top-0 bg-white container mx-auto drop-shadow-sm">
+        <div className="navbar z-[999] sticky top-0 bg-gray-900 text-white container mx-auto drop-shadow-sm">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] px-4 py-8 shadow bg-base-100 rounded-box w-52 space-y-2">
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] px-4 py-8 shadow bg-gray-900 rounded-box w-52 space-y-2">
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/blogs'>Blogs</Link></li>
                         <li><Link to='/about'>About</Link></li>
@@ -24,7 +24,7 @@ const NavbarComponent = () => {
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to="/" className="text-3xl font-medium ">VividVista</Link>
+                <Link to="/" className="text-3xl font-medium ">Blog-Express</Link>
             </div>
             <div className="navbar-end">
                 <div className="dropdown dropdown-end mr-5">
@@ -43,7 +43,7 @@ const NavbarComponent = () => {
                                     <img alt="user profile image" src={user?.photoURL} />
                                 </div>
                             </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-gray-900 rounded-box w-52">
                                 <li>
                                     <Link className="justify-between">
                                         Profile

@@ -2,10 +2,10 @@ import { FaGooglePlay, FaAppStore, FaTwitter, FaFacebook, FaInstagram } from 're
 
 const Footer = () => {
     return (
-        <footer className="container mx-auto bg-transparent text-gray-800 py-8 px-5 bg-gray-200 border-gray-500">
+        <footer className="container mx-auto text-gray-200 py-8 px-5 bg-gray-900 border-gray-500">
             <div className='flex justify-between items-center py-5'>
                 <h2 className="text-4xl font-medium">
-                    VividVista
+                    Blog-Express
                 </h2>
 
                 {/* App Store/Google Play links */}
@@ -24,7 +24,7 @@ const Footer = () => {
                 <div className="mb-4 md:mb-0 md:border-r md:border-gray-500 md:pr-4 md:pl-4">
                     <p className=" mb-2">123 Street, City</p>
                     <p className="mb-2">Country, 12345</p>
-                    <p className='text-sm font-normal'>&copy; 2024 Your Blog. All rights reserved.</p>
+                    <p className='text-sm font-normal'>&copy; 2024 Blog-Express. All rights reserved.</p>
                 </div>
 
                 {/* Column 2: Links */}
